@@ -3,43 +3,78 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stack>
+#include <unordered_map>
 using namespace std;
+
+template <typename T, typename... U>
+void print(T t, U... u)
+{
+    std::cout << t << " ";
+    print(u...);
+}
+
+template <typename T, typename... U>
+void println(T t, U... u)
+{
+    // constexpr sizeof...(u) dynamically evaluates to the number of arguments in run-time
+    if (sizeof...(u) == 0) // keyword constexpr only in C++17
+    {
+        std::cout << t << std::endl;
+    }
+    else
+    {
+        std::cout << t << " ";
+        println(u...);
+    }
+}
+
 class Solution
 {
 public:
-    string longestCommonPrefix(vector<string> &strs)
+    bool isValid(string s)
     {
-        int min_str_len = strs.at(0).length();
-        for (auto str : strs)
+        auto print_stack = [](std::stack<int> stk)
         {
-            if (str.length() < min_str_len)
+            std::cout << "stack:";
+            while (!stk.empty())
             {
-                min_str_len = str.length();
+                std::cout << " " << stk.top();
+                stk.pop();
             }
-        }
+            std::cout << std::endl;
+        };
+        if (s.size() % 2 != 0)
+            return false;
 
-        std::string str_common_prefix = "";
-        for (int i = 0; i < min_str_len; i++)
+        unordered_map<char, char> pairs = {
+            {')', '('},
+            {'}', '{'},
+            {']', '['},
+        };
+        std::stack<int> char_stack;
+        print_stack(char_stack);
+        char_stack.emplace(1);
+        char_stack.emplace(1);
+        char_stack.emplace(2);
+        print_stack(char_stack);
+
+        return true;
+        for (char c : s)
         {
-            char c = strs.at(0)[i];
-            bool is_same = true;
-            for (auto str : strs)
+            if (pairs.count(c) > 0)
             {
-                if (c != str[i])
-                {
-                    is_same = false;
-                    break;
-                }
+                if (char_stack.empty() || pairs[c] != char_stack.top())
+                    return false;
+                else
+                    char_stack.pop();
             }
-            if (is_same == true)
-                str_common_prefix += c;
             else
             {
-                break;
+                char_stack.push(c);
             }
         }
-
-        return str_common_prefix;
+        return char_stack.empty();
     }
 };
 int main(int argc, char const *argv[])
@@ -61,15 +96,10 @@ int main(int argc, char const *argv[])
         delete[] str_now_time;
     }
     {
-        std::vector<string> strs;
-        strs.push_back("flower");
-        strs.push_back("flow");
-        strs.push_back("flight");
-        for (auto str : strs)
-            std::cout << str << ",";
-        std::cout << std::endl;
-        auto sln = new Solution();
-        std::cout << sln->longestCommonPrefix(strs) << std::endl;
+        string s = "(){}}{";
+        auto sln = Solution();
+        bool is_match = sln.isValid(s);
+        std::cout << "isValid:" << is_match << std::endl;
     }
     return 0;
 }

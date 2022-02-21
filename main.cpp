@@ -18,7 +18,7 @@ class Solution
             bool isSame = true;
             for (int i = left; i < left + window_len; i++)
             {
-                if (haystack[i] !=needle[i-left])
+                if (haystack[i] != needle[i - left])
                 {
                     isSame = false;
                     break;
@@ -36,13 +36,18 @@ int main(int argc, char const* argv[])
 {
     Solution sln = Solution();
 
-    std::string haystack = "a";
-    std::string needle   = "a";
-
-    int len = sln.strStr(haystack, needle);
-    std::cout << len << std::endl;
-
-    return 0;
+    {
+        std::vector<int> vec(5);
+        for (auto x : vec)
+            std::cout << x << " ";
+        std::cout << std::endl;
+    }
+    {
+        std::vector<int> vec(5);
+        for (auto x : vec)
+            std::cout << x << " ";
+        std::cout << std::endl;
+    }
 }
 
 /*

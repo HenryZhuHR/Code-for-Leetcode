@@ -9,23 +9,23 @@ class Solution
 public:
     int removeElement(vector<int> &nums, int val)
     {
-        int n = nums.size();
+        int last = nums.size() - 1;
         int i = 0;
-        while (i < n)
+
+        while (i < last)
         {
-            printf("i=%d : ", i);
+
+            while (nums[last] == val)
+                last--;
 
             if (nums[i] == val)
             {
-                nums[i] = nums[n - 1];
-                n--;
+                nums[i] = nums[last];
+                last--;
             }
-            for (auto x : nums)
-                std::cout << x << " ";
-            std::cout << std::endl;
             i++;
         }
-        return n;
+        return last+1;
     }
 };
 
@@ -52,10 +52,20 @@ int main(int argc, char const *argv[])
         std::vector<int> nums{3, 2, 2, 3};
         int val = 3;
         int len = sln.removeElement(nums, val);
-        std::cout << len << ": " ;
+        std::cout << len << ": ";
         for (int i = 0; i < len; i++)
         {
             std::cout << nums[i] << " ";
+        }
+        std::cout << std::endl;
+
+        std::vector<int> nums1{1};
+        val = 1;
+        len = sln.removeElement(nums1, val);
+        std::cout << len << ": ";
+        for (int i = 0; i < len; i++)
+        {
+            std::cout << nums1[i] << " ";
         }
         std::cout << std::endl;
     }

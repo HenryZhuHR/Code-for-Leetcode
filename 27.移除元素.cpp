@@ -7,23 +7,21 @@
 #include <vector>
 using namespace std;
 // @lc code=start
-class Solution
-{
+class Solution {
 public:
-    int removeElement(vector<int> &nums, int val)
-    {
-        int n = nums.size();
-        int i = 0;
-        while (i < n)
-        {
-            if (nums[i] == val)
-            {
-                nums[i] = nums[n - 1];
-                n--;
-            }
-            i++;
-        }
-        return n;
+  int removeElement(vector<int> &nums, int val) {
+    int left = 0;
+    int right = nums.size();
+    while (left < right) {
+      if (nums[left] == val) {
+        nums[left] = nums[right-1];
+        right--;
+      } else {
+        left++;
+      }
     }
+
+    return left;
+  }
 };
 // @lc code=end

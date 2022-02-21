@@ -1,4 +1,5 @@
 {
+    "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
         "*.md": "markdown",
         "*.cjson": "jsonc",
@@ -38,6 +39,7 @@
         "ctime": "cpp",
         "cwchar": "cpp",
         "cwctype": "cpp",
+        "deque": "cpp",
         "exception": "cpp",
         "functional": "cpp",
         "initializer_list": "cpp",
@@ -55,6 +57,7 @@
         "ostream": "cpp",
         "ratio": "cpp",
         "sstream": "cpp",
+        "stack": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "string": "cpp",
@@ -65,11 +68,6 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "vector": "cpp",
-        "deque": "cpp",
-        "stack": "cpp",
-        "map": "cpp",
-        "__tree": "cpp",
-        "set": "cpp"
+        "vector": "cpp"
     }
 }

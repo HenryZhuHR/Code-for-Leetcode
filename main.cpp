@@ -6,68 +6,46 @@ using namespace std;
 
 class Solution
 {
-public:
-    int removeElement(vector<int> &nums, int val)
+  public:
+    int strStr(string haystack, string needle)
     {
-        int last = nums.size() - 1;
-        int i = 0;
-
-        while (i < last)
+        int window_len = needle.length();
+        if (window_len == 0)
+            return window_len;
+        int left = 0;
+        for (; left + window_len <= haystack.length(); left++)
         {
-
-            while (nums[last] == val)
-                last--;
-
-            if (nums[i] == val)
+            bool isSame = true;
+            for (int i = left; i < left + window_len; i++)
             {
-                nums[i] = nums[last];
-                last--;
+                if (haystack[i] !=needle[i-left])
+                {
+                    isSame = false;
+                    break;
+                }
             }
-            i++;
+            if (isSame)
+                return left;
         }
-        return last+1;
+
+        return -1;
     }
 };
 
-int main(int argc, char const *argv[])
+int main(int argc, char const* argv[])
 {
-    {
-        auto now_date = std::chrono::system_clock::now(); // steady_clock
-        time_t c_now_time = std::chrono::system_clock::to_time_t(now_date);
-        auto time_tm = localtime(&c_now_time);
-        char *str_now_time = new char[1]; // XXX: 这里应该怎么初始化？// char str_now_time[17];
-        sprintf(str_now_time,
-                "%d-%02d-%02d %02d:%02d:%02d",
-                time_tm->tm_year + 1900,
-                time_tm->tm_mon + 1,
-                time_tm->tm_mday,
-                time_tm->tm_hour,
-                time_tm->tm_min,
-                time_tm->tm_sec);
-        std::cout << str_now_time << std::endl;
-        delete[] str_now_time;
-    }
     Solution sln = Solution();
-    {
-        std::vector<int> nums{3, 2, 2, 3};
-        int val = 3;
-        int len = sln.removeElement(nums, val);
-        std::cout << len << ": ";
-        for (int i = 0; i < len; i++)
-        {
-            std::cout << nums[i] << " ";
-        }
-        std::cout << std::endl;
 
-        std::vector<int> nums1{1};
-        val = 1;
-        len = sln.removeElement(nums1, val);
-        std::cout << len << ": ";
-        for (int i = 0; i < len; i++)
-        {
-            std::cout << nums1[i] << " ";
-        }
-        std::cout << std::endl;
-    }
+    std::string haystack = "a";
+    std::string needle   = "a";
+
+    int len = sln.strStr(haystack, needle);
+    std::cout << len << std::endl;
+
     return 0;
 }
+
+/*
+g++ main.cpp
+a.exe
+*/

@@ -4,6 +4,8 @@
  * [28] 实现 strStr()
  */
 
+#include <iostream>
+using namespace std;
 // @lc code=start
 class Solution
 {

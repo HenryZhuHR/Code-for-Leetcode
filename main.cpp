@@ -2,33 +2,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 using namespace std;
-
 class Solution
 {
   public:
-    int strStr(string haystack, string needle)
+    int maxSubArray(vector<int>& nums)
     {
-        int window_len = needle.length();
-        if (window_len == 0)
-            return window_len;
-        int left = 0;
-        for (; left + window_len <= haystack.length(); left++)
-        {
-            bool isSame = true;
-            for (int i = left; i < left + window_len; i++)
-            {
-                if (haystack[i] != needle[i - left])
-                {
-                    isSame = false;
-                    break;
-                }
-            }
-            if (isSame)
-                return left;
-        }
 
-        return -1;
+        int max = 0;
+        for (int winwidth = 1; winwidth <= nums.size(); winwidth++)
+        {
+            for (int i = 0; i < winwidth; i++)
+            {
+                int sum = 0;
+                for (int j = i; j < i + winwidth; j++)
+                    sum += nums[j];
+                if (sum > max)
+                    max = sum;
+            }
+        }
+        return max;
     }
 };
 
@@ -37,16 +31,15 @@ int main(int argc, char const* argv[])
     Solution sln = Solution();
 
     {
-        std::vector<int> vec(5);
-        for (auto x : vec)
-            std::cout << x << " ";
-        std::cout << std::endl;
-    }
-    {
-        std::vector<int> vec(5);
-        for (auto x : vec)
-            std::cout << x << " ";
-        std::cout << std::endl;
+        std::vector<int> nums{-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+
+        auto ret = sln.maxSubArray(nums);
+
+        // for (auto x : nums)
+        //     std::cout << x << " ";
+        // std::cout << std::endl;
+        std::cout << " output:" << ret << std::endl;
     }
 }
 

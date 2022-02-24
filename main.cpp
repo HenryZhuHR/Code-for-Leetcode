@@ -7,19 +7,15 @@ using namespace std;
 class Solution
 {
   public:
-    vector<int> plusOne(vector<int>& digits)
+    string addBinary(string a, string b)
     {
-        for (int i = digits.size() - 1; i >= 0; i--)
-        {
-            digits[i]++;
-            if (digits[i] > 9)
-                digits[i] = 0;
-            else
-                return digits;
-        }
-        digits.insert(digits.begin(), 1);
+        int         n = a.length() > b.length() ? a.length() : b.length();
+        std::string result;
+        result.reserve(n);
 
-        return digits;
+        for (auto x : a)
+            std::cout << x << " ";
+        std::cout << std::endl;
     }
 };
 
@@ -28,17 +24,15 @@ int main(int argc, char const* argv[])
     Solution sln = Solution();
 
     {
-        std::vector<int> nums{1,2,9};
-        for (auto x : nums)
-            std::cout << x << " ";
-        std::cout << std::endl;
+        std::vector<int> nums{1, 2, 9};
+        // for (auto x : nums)
+        //     std::cout << x << " ";
+        // std::cout << std::endl;
+        std::string a = "1010", b = "1011";
 
-        auto ret = sln.plusOne(nums);
+        auto ret = sln.addBinary(a, b);
 
-        for (auto x : nums)
-            std::cout << x << " ";
-        std::cout << std::endl;
-        // std::cout << " output:" << ret << std::endl;
+        std::cout << " output:" << ret << std::endl;
     }
 }
 

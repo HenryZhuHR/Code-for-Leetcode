@@ -14,7 +14,6 @@ class Solution
   public:
     string longestPalindrome(string s)
     {
-        ;
         int n = s.length();
         if (n <= 1)
             return s;

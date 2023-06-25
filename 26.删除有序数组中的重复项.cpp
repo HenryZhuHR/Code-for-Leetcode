@@ -9,25 +9,20 @@ using namespace std;
 // @lc code=start
 class Solution
 {
-public:
-    int removeDuplicates(vector<int> &nums)
+  public:
+    int removeDuplicates(vector<int>& nums)
     {
-        if (nums.size() == 0)
-            return 0;
-
-        int fast = 1;
-        int slow = 1;
-        
-        while (fast < nums.size())
+        int pslow = 0;
+        for (int pfast = 1; pfast < nums.size(); pfast++)
         {
-            if (nums[fast] != nums[fast - 1])
+            if (nums[pfast] != nums[pslow])
             {
-                nums[slow] = nums[fast];
-                slow++;
+                pslow++;
+                nums[pslow] = nums[pfast];
             }
-            fast++;
         }
-        return slow;
+
+        return pslow + 1;
     }
 };
 // @lc code=end

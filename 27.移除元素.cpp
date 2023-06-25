@@ -10,24 +10,19 @@ using namespace std;
 class Solution
 {
   public:
-    int removeElement(vector<int>& nums, int val)
+    int removeElement(vector<int>& nums, int val)// 快慢双指针
     {
-        int left  = 0;
-        int right = nums.size();
-        while (left < right)
-        {
-            if (nums[left] == val)
-            {
-                nums[left] = nums[right - 1];
-                right--;
-            }
-            else
-            {
-                left++;
-            }
-        }
+        int len = nums.size();
 
-        return left;
+        int pfast,pslow=0;
+        for(int pfast=0;pfast<nums.size();pfast++){
+            if (nums[pfast]!=val){
+                nums[pslow]=nums[pfast];
+                pslow++;
+            }
+            
+        }
+        return pslow;
     }
 };
 // @lc code=end

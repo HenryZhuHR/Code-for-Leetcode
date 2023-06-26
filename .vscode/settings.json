@@ -3,7 +3,9 @@
         "algorithm": "cpp",
         "vector": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "unordered_map": "cpp",
+        "__node_handle": "cpp"
     },
     "C_Cpp.default.compilerArgs": [
         "-std=c++11"

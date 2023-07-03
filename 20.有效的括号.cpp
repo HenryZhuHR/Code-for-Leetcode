@@ -11,34 +11,39 @@
 using namespace std;
 class Solution
 {
-public:
+  public:
     bool isValid(string s)
     {
-        if (s.size() % 2 != 0)
-            return false;
-
-        unordered_map<char, char> pairs = {
-            {')', '('},
-            {'}', '{'},
-            {']', '['},
-        };
-        std::stack<char> char_stack;
-        for (char c : s)
+        unordered_map<char, char> umap = {{'(', ')'}, {'[', ']'}, {'{', '}'}};
+        stack<char>               stack_char;
+        for (auto c : s)
         {
-            if (pairs.count(c) > 0)
+
+            if (c == ')' || c == ']' || c == '}')
             {
-                if (char_stack.empty() || pairs[c] != char_stack.top())
+
+                if (stack_char.empty())
+                {
                     return false;
+                }
                 else
-                    char_stack.pop();
+                {
+                    if (c == umap[stack_char.top()])
+                    {
+                        stack_char.pop();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
             else
             {
-                char_stack.push(c);
+                stack_char.push(c);
             }
         }
-        return char_stack.empty();
+        return stack_char.empty();
     }
 };
 // @lc code=end
-

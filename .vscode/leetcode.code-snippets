@@ -15,18 +15,62 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"Print to console": {
+	"Leetcode Header": {
 		"scope": "cpp",
 		"prefix": "leetcode_header",
 		"body": [
 			"#include <iostream>",
 			"#include <string>",
 			"#include <vector>",
+			"#include <stack>",
+			"#include <queue>",
 			"#include <algorithm>",
 			"#include <unordered_set>",
-			"using namespace std;"
-			"$2"
+			"using namespace std;",
+			""
 		],
 		"description": "Log output to console"
+	},
+	"Leetcode Tree Node": {
+		"scope": "cpp",
+		"prefix": "leetcode_tree_node",
+		"body": [
+			"/**",
+			" * 二叉树的定义",
+			" *   0",
+			" *  / \\",
+			" * 0   0",
+			" */",
+			"struct TreeNode",
+			"{",
+			"\tint       val;",
+			"\tTreeNode* left;",
+			"\tTreeNode* right;",
+			"\tTreeNode() : val(0), left(nullptr), right(nullptr) {}",
+			"\tTreeNode(int x) : val(x), left(nullptr), right(nullptr) {}",
+			"\tTreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}",
+			"};",
+			"",
+		],
+		"description": "Leetcode Tree Node"
+	},
+	"Leetcode LinkList Node": {
+		"scope": "cpp",
+		"prefix": "leetcode_linkedlist_node",
+		"body": [
+			"/**",
+			" * 单向链表",
+			" */",
+			"struct ListNode",
+			"{",
+			"\tint       val;",
+			"\tListNode* next;",
+			"\tListNode() : val(0), next(nullptr) {}",
+			"\tListNode(int x) : val(x), next(nullptr) {}",
+			"\tListNode(int x, ListNode* next) : val(x), next(next) {}",
+			"};",
+			""
+		],
+		"description": "Leetcode Tree Node"
 	}
 }

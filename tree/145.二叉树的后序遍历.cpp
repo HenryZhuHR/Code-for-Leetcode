@@ -61,6 +61,12 @@
 #include <unordered_set>
 using namespace std;
 
+/**
+ * 二叉树的定义
+ *   0
+ *  / \
+ * 0   0
+ */
 struct TreeNode
 {
     int       val;
@@ -70,6 +76,7 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
+
 // @lc code=start
 
 class Solution
@@ -86,51 +93,47 @@ class Solution
 
     vector<int> postorderTraversal_Iteration(TreeNode* root)
     {
-        stack<TreeNode*> st;
+
         vector<int>      res;
-        TreeNode*        prev = nullptr; // 用来记录上一节点
-        while (!st.empty() || root)
+        stack<TreeNode*> st;
+        TreeNode*        prev = nullptr;
+
+
+        while (!st.empty() || root != nullptr)
         {
-            while (root)
+            while (root != nullptr)
             {
-                st.push(root);
+                st.emplace(root);
                 root = root->left;
             }
-
-
             /**
-             * 主要就是判断出来的是不是右子树，是的话就可以把根节点=加入到list了
-             *       root
-             *      |    |
-             *    left  [ ] (遍历到最下面的 left 结点)
-             *   |    |
-             * null1  null2
+             * 找到最左侧的空
+             * 返回上一层的结点，这时候，左已经遍历了
+             * 然后先遍历右，再 中
+             *  (0)
+             *  / \
+             * _   0
              */
-
-            root = st.top(); // 这时候遍历到 null1， 所以取出上一层的 left ( root = left )
+            root = st.top();
             st.pop();
 
             /**
-             * prev 初始值为 null
-             * 主要是这个避免重复的标记,
-             *
-             * root.right == null 表示当前节点为根节点
-             * root.right == prev 如果右子树是上一次处理的节点则处理根节点
-             *
-             *  右结点空 或者 右结点已经处理过了
+             * 但是右不知道是不是遍历过，所以之前定义一个 prev 判断
+             * 如果 [右结点空] 或者 [右结点已经遍历过(标记 prev)]，就返回当前的结点
+             *  (0)     (0)
+             *  / \     / \
+             * _   _   _  [p]
+             * 如果没有，那就遍历右，
              */
-            if (root->right == prev || root->right == nullptr)
+            if (root->right == nullptr || root->right == prev)
             {
                 res.emplace_back(root->val);
-                prev = root; // 标记该结点，说明已经处理过了
+                prev = root; // 标记当前结点
                 root = nullptr;
             }
-            /**
-             * 右子树不为空，左子树找到根, 根找到右子树，先处理右子树
-             */
             else
             {
-                st.push(root); // 重新把根节点入栈，处理完右子树还要回来处理根节点
+                st.emplace(root); // 当前结点入st 先处理右
                 root = root->right;
             }
         }

@@ -22,7 +22,9 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "optional": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "__node_handle": "cpp",
+        "ios": "cpp"
     }
 
 }

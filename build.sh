@@ -1,11 +1,11 @@
-OUT=main
+FILE=dynamic-programming/_01背包问题
 
 
 # clear
-rm ${OUT}
-g++ "main.cpp" -o ${OUT} \
-    -std=c++11
-    # -Wall 
-    # -Werror
+rm ${FILE}
+g++ "${FILE}.cpp" -o ${FILE} \
+    -std=c++11 \
+    -Wall \
+    -Werror
     
-./${OUT}
+./${FILE}

@@ -88,9 +88,15 @@ class Solution
         std::vector<int> dp(amount + 1, 0);
         dp[0] = 1; // 初始化
 
-        for (int i = 0; i < coins.size(); i++)
+
+        /**
+         * 遍历顺序
+         * 如果求 「组合数」 就是 外层for 遍历 「物品」 ，内层for 遍历 「背包」
+         * 如果求 「排列数」 就是 外层for 遍历 「背包」 ，内层for 遍历 「物品」
+         */
+        for (int i = 0; i < coins.size(); i++)       // 「组合数」 外层 「物品」
         {
-            for (int j = coins[i]; j <= amount; j++)
+            for (int j = coins[i]; j <= amount; j++) // 「组合数」 内层 「背包」
             {
                 // 组合类问题求和公式
                 dp[j] = dp[j]               // 0 不取

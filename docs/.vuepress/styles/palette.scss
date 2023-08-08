@@ -120,3 +120,27 @@ html.dark {
   // code blocks vars
   --code-hl-bg-color: #363b46;
 }
+
+
+.sidebar-item {
+  font-weight: 800 !important;
+  font-size: 1.08rem !important;
+  padding: 1rem 1rem 0.35rem 1rem !important;
+}
+
+.sidebar-item-children .sidebar-item-children .sidebar-item {
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  padding: 0.35rem 1rem 0.35rem 2rem !important;
+  list-style-type: circle !important;
+
+  &::before {
+    content: '»';
+    position: relative;
+  }
+}
+
+.sidebar-heading{
+  // 放在后面，否则被覆盖
+  font-size: 1.5rem !important;
+}

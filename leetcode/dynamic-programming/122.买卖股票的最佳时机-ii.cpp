@@ -66,11 +66,7 @@ using namespace std;
 
 
 // @lc code=start
-typedef struct
-{
-    int __hold = 0; // 持有股票的利润
-    int nohold = 0; // 不持有股票的利润
-} profit;
+
 class Solution
 {
   public:
@@ -80,22 +76,17 @@ class Solution
     int maxProfit(vector<int>& prices)
     {
         int size = prices.size();
-        // dp[j] 表示第 j 天的利润
-        std::vector<profit> dp(size);
-        dp[0].__hold = -prices[0];
-        dp[0].nohold = 0;
-        for (int i = 1; i < size; i++)
+        int s0   = 0;          // 不持 利润 0
+        int s1   = -prices[0]; // 持有 不合法，相当于买入第一天的
+
+        for (auto p : prices)
         {
-            dp[i].__hold = max(               // 当天 持有
-                dp[i - 1].__hold,             // 0 不买 前一天持有，所以不需要买卖
-                dp[i - 1].nohold - prices[i]  // 1 买入 前一天持有，必须买入
-            );
-            dp[i].nohold = max(               // 当天 不持有
-                dp[i - 1].__hold + prices[i], // 0 不买 前一天持有，所以要卖掉
-                dp[i - 1].nohold              // 1 买入 前一天不持有，所以不需要买卖
-            );
+            int s0_t = max(s0, s1 + p);
+            int s1_t = max(s1, s0 - p);
+            s0       = s0_t;
+            s1       = s1_t;
         }
-        return dp[size - 1].nohold;
+        return s0;
     }
 };
 // @lc code=end

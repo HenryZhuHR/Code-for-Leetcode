@@ -48,26 +48,30 @@
  *
  *
  */
-
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
 // @lc code=start
 class Solution
 {
   public:
     int maxProfit(vector<int>& prices)
     {
-        int n = prices.size();
-        if (prices.size() == 1)
+        if (prices.size() <= 1)
             return 0;
-        int max_profit = 0;
-        int min_price  = prices[0];
-        for (int i = 0; i < n - 1; i++)
+
+        int min_p  = prices[0];  // 记录第一天的价值
+        int profit = -prices[0]; // 假设买入第一天的
+        for (int i = 1; i < prices.size(); i++)
         {
-            if (prices[i] < min_price)
-                min_price = prices[i];
-            if ((prices[i + 1] - min_price) >= max_profit)
-                max_profit = prices[i + 1] - min_price;
+
+            min_p  = min(prices[i], min_p);          // 如果哪一天比这一天小，那么更新最小
+            profit = max(profit, prices[i] - min_p); // 之前的利润高 还是 今天卖出的利润高
         }
-        return max_profit;
+        return profit;
     }
 };
 // @lc code=end

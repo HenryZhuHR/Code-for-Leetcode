@@ -3,4 +3,7 @@ main
 
 node_modules
 
+bin/
 *.exe
+*.out
+

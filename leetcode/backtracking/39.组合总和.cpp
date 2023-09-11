@@ -69,34 +69,37 @@ using namespace std;
  */
 class Solution
 {
-    vector<vector<int>> res;
-    vector<int>         path;
+    //     vector<vector<int>> res;
+    //     vector<int>         path;
 
-  public:
+    //   public:
+
+    //     void bt(vector<int>& candidates, int target, int sum, int si)
+    //     {
+    //         if (sum > target)
+    //             return;
+    //         if (sum == target)
+    //         {
+    //             res.push_back(path);
+    //             return;
+    //         }
+
+    //         for (int i = si; i < candidates.size(); i++)
+    //         {
+    //             int num = candidates[i];
+    //             path.push_back(num);
+    //             sum += num;
+    //             bt(candidates, target, sum, i);
+    //             path.pop_back();
+    //             sum -= num;
+    //         }
+    //     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target)
     {
-        bt(candidates, target, 0, 0);
-        return res;
-    }
-    void bt(vector<int>& candidates, int target, int sum, int si)
-    {
-        if (sum > target)
-            return;
-        if (sum == target)
-        {
-            res.push_back(path);
-            return;
-        }
+        // bt(candidates, target, 0, 0);
+        // return res;
 
-        for (int i = si; i < candidates.size(); i++)
-        {
-            int num = candidates[i];
-            path.push_back(num);
-            sum += num;
-            bt(candidates, target, sum, i);
-            path.pop_back();
-            sum -= num;
-        }
+        
     }
 };
 // @lc code=end

@@ -59,31 +59,30 @@ using namespace std;
 // @lc code=start
 class Solution
 {
-  private:
-    std::vector<std::vector<int>> result; // 最终的结果 由 temp 组成
-    std::vector<int>              path;   // 每次结果 实际上是一个 stack
-
-  private:
-    void backtracking(int start, int n, int k)
-    {
-        // 剪枝 路径长度 + 剩下能取的数字 < k 那么不可能组成 k 个数字
-        if (path.size() + n - start +1< k)
-        {
-            return;
-        }
-        if (path.size() == k)
-        {
-            // 终止递归，存放结果
-            result.emplace_back(path);
-            return;
-        }
-        for (int i = start; i <= n; i++)
-        {
-            path.emplace_back(i);
-            backtracking(i + 1, n, k);
-            path.pop_back(); // [回溯核心] 撤销本次操作，用于下一次的遍历，不然数组会重复
-        }
-    }
+    // private:
+    // vector<vector<int>>result;
+    // vector<int>path;
+    // private:
+    // void backtracking(int start, int n, int k)
+    // {
+    //     // 剪枝 路径长度 + 剩下能取的数字 < k 那么不可能组成 k 个数字
+    //     if (path.size() + n - start + 1 < k)
+    //     {
+    //         return;
+    //     }
+    //     if (path.size() == k)
+    //     {
+    //         // 终止递归，存放结果
+    //         result.emplace_back(path);
+    //         return;
+    //     }
+    //     for (int i = start; i <= n; i++)
+    //     {
+    //         path.emplace_back(i);
+    //         backtracking(i + 1, n, k);
+    //         path.pop_back(); // [回溯核心] 撤销本次操作，用于下一次的遍历，不然数组会重复
+    //     }
+    // }
 
   public:
     /**
@@ -92,7 +91,27 @@ class Solution
      */
     vector<vector<int>> combine(int n, int k)
     {
-        backtracking(1, n, k);
+        std::vector<std::vector<int>> result; // 最终的结果 由 temp 组成
+        std::vector<int>              path;   // 每次结果 实际上是一个 stack
+
+        std::function<void(int)> backtracking = [&](int start_id)
+        {
+            if (path.size() + n - start_id + 1 < k)
+                return;
+            if (path.size() == k)
+            { // 遇到叶子节点，个数满足要求
+                result.push_back(path);
+                return;
+            }
+            for (int i = start_id; i <= n; i++)
+            {
+                path.push_back(i);   // 处理节点
+                backtracking(i + 1); // 递归
+                // [回溯核心] 撤销本次操作，用于下一次的遍历，不然数组会重复
+                path.pop_back();
+            }
+        };
+        backtracking(1);
         return result;
     }
 };

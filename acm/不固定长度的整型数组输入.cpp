@@ -1,5 +1,9 @@
 #include <iostream>
 #include <vector>
+/**
+ * cin以空格、tab、换行符作为分隔符
+ * cin从第一个非空格字符开始读取，直到遇到分隔符结束读取
+ */
 int main(int argc, char const* argv[])
 {
     /**
@@ -14,7 +18,7 @@ int main(int argc, char const* argv[])
         nums.push_back(num);
 
         // 读到换行符，终止循环
-        if (getchar() == '\n') // 或者 if (std::cin.get() == '\n')
+        if (std::cin.get() == '\n')
             break;
     }
 

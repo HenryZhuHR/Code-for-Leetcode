@@ -1,13 +1,14 @@
-FILE=acm/整型数组输入
+# FILE=acm/整型数组输入
 
 
-# clear
-mkdir -p bin
-# rm bin/${FILE}
-g++ "${FILE}.cpp" -o bin/${FILE} \
-    -std=c++11 \
-    -Wall \
-    -Werror
+# # clear
+# mkdir -p bin
+# # rm bin/${FILE}
+# g++ "${FILE}.cpp" -o bin/${FILE} \
+#     -std=c++11 \
+#     -Wall \
+#     -Werror
     
-cd bin 
-./${FILE}
+# cd bin 
+# ./${FILE}
+

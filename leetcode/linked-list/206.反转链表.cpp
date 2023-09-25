@@ -55,7 +55,14 @@
  *
  *
  */
-
+struct ListNode
+{
+    int       val;
+    ListNode* next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+};
 // @lc code=start
 #include <iostream>
 #include <string>
@@ -64,30 +71,20 @@
 #include <unordered_set>
 using namespace std;
 
-// struct ListNode
-// {
-//     int       val;
-//     ListNode* next;
-//     ListNode() : val(0), next(nullptr) {}
-//     ListNode(int x) : val(x), next(nullptr) {}
-//     ListNode(int x, ListNode* next) : val(x), next(next) {}
-// };
 
 class Solution
 {
   public:
     ListNode* reverseList(ListNode* head)
     {
-
-        ListNode* p = head;    // current  pointer
-        ListNode* q = nullptr; // previous pointer
-        ListNode* tmp;
+        ListNode* p = head;
+        ListNode* q = nullptr;
         while (p != nullptr)
         {
-            tmp       = p;
-            p         = p->next;
-            tmp->next = q;
-            q         = tmp;
+            auto n_next = p->next;
+            p->next     = q;
+            q           = p;
+            p           = n_next;
         }
         return q;
     }

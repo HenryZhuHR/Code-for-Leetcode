@@ -10,7 +10,7 @@ cd bin
 echo "===================="
 echo "Test ${FILE_NAME}"
 MN="2 3"
-row1="1 2 3"
-row2="4 5 6"
-row3="7 8 9"
+row1="1,2,3\n"
+row2="4,5,6\n"
+row3="7,8,9"
 echo $MN $row1 $row2 $row3 | ./${FILE_NAME}

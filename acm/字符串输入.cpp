@@ -9,20 +9,22 @@ int main()
      * 例如：
      * hello world
      * world hello
-    */
+     */
     std::string              str;
     std::vector<std::string> strs;
     while (std::cin >> str)
     {
         strs.push_back(str);
-        if (getchar() == '\n')
+        std::cout << "当前单词：" << str << std::endl;
+        if (getchar()  == '\n')
         { // 控制测试样例
-            for (auto& str : strs)
-            {
-                std::cout << "当前单词：" << str << " ";
-            }
-            std::cout << std::endl;
-            strs.clear();
+            // for (auto& str : strs)
+            // {
+            //     std::cout << "当前单词：" << str << " ";
+            // }
+            // std::cout << std::endl;
+            // strs.clear();
+            break;
         }
     }
     return 0;

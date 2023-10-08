@@ -62,5 +62,22 @@ int main(int argc, char const* argv[])
         printf("%d, ", n);
     printf("\n");
 
+
+    {
+        size_t a = 0;
+        printf("%zu %d\n", a, 1000000 < a);
+        a--;
+        printf("%zu %d\n", a, 1000000 < a);
+        vector<int> nums;
+
+        // 严重的bug 如果 nums 为 0 那么绝对不能 -1 否则死循环
+        for (int i = 0; i < nums.size() - 1; i++)
+        {
+            printf("%d\n", i);
+            if (i > 100)
+                break;
+        }
+    }
+
     return 0;
 }

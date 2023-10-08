@@ -86,7 +86,7 @@ BraceWrapping:
 BreakBeforeBinaryOperators: None
 
 # 大括号不换行: Attach 大括号换行: Allman
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Custom
 BreakBeforeInheritanceComma: false
 BreakInheritanceList: BeforeColon
 BreakBeforeTernaryOperators: true
